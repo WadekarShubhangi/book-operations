@@ -1,5 +1,14 @@
+
 const express = require("express");
 const app = express();
+const cors = require("cors");
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 const Books = require("./models/book.models");
 const { initializeDatabase } = require("./db/db.connect");
@@ -249,7 +258,7 @@ app.delete("/books/:bookId", async (req, res) => {
     }
 })
 
-const PORT = 3000;
+const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
 });
